@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naitik Nayak | Web Developer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* =====================================================
+           ROOT
+        ===================================================== */
+        :root {
+            --bg: #050816;
+            --bg-light: #0b1024;
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.11);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --primary: #7c3aed;
+            --secondary: #06b6d4;
+            --pink: #ec4899;
+            --gradient:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #06b6d4
+                );
+            --radius: 24px;
+        }
+        /* =====================================================
+           RESET
+        ===================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+        }
+        button {
+            font-family: inherit;
+        }
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            top: -180px;
+            left: -150px;
+            background: #7c3aed;
+            filter: blur(150px);
+            opacity: .22;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            right: -150px;
+            bottom: -150px;
+            background: #06b6d4;
+            filter: blur(150px);
+            opacity: .18;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar {
+            width: min(1150px, 92%);
+            margin: 18px auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10,15,35,.68);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(0,0,0,.25);
+        }
+        .logo {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .logo span {
+            color: #8b5cf6;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 500;
+            transition: .3s;
+        }
+        .nav-links a:hover {
+            color: white;
+        }
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+        }
+        /* =====================================================
+           HERO
+        ===================================================== */
+        .hero {
+            min-height: 100vh;
+            width: min(1150px, 92%);
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: 60px;
+            padding-top: 110px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(139,92,246,.35);
+            background: rgba(139,92,246,.08);
+            border-radius: 50px;
+            color: #c4b5fd;
+            font-size: 13px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #22c55e;
+        }
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(52px, 7vw, 88px);
+            line-height: .98;
+            letter-spacing: -4px;
+            margin-bottom: 22px;
+        }
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #a78bfa,
+                #22d3ee,
+                #f472b6
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 5s linear infinite;
+        }
+        @keyframes gradientMove {
+            to {
+                background-position: 200% center;
+            }
+        }
+        .hero h2 {
+            font-size: 22px;
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+        .hero-description {
+            max-width: 600px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+        .btn-primary {
+            background: var(--gradient);
+            box-shadow: 0 10px 30px rgba(124,58,237,.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(124,58,237,.45);
+        }
+        .btn-glass {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.04);
+            backdrop-filter: blur(10px);
+        }
+        .btn-glass:hover {
+            background: rgba(255,255,255,.09);
+            transform: translateY(-4px);
+        }
+        /* =====================================================
+           HERO VISUAL
+        ===================================================== */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-orbit {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(124,58,237,.25),
+                    transparent 60%
+                );
+            border: 1px solid rgba(255,255,255,.1);
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        .profile-orbit::before {
+            content: "";
+            position: absolute;
+            inset: -18px;
+            border: 1px dashed rgba(139,92,246,.45);
+            border-radius: 50%;
+            animation: spin 18s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .profile {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(139,92,246,.2),
+                    rgba(6,182,212,.15)
+                );
+            border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(20px);
+            box-shadow:
+                inset 0 0 50px rgba(255,255,255,.04),
+                0 20px 70px rgba(0,0,0,.4);
+        }
+        .profile i {
+            font-size: 90px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .floating-card {
+            position: absolute;
+            padding: 13px 17px;
+            border-radius: 14px;
+            background: rgba(15,23,42,.7);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 15px 40px rgba(0,0,0,.3);
+            font-size: 12px;
+        }
+        .card-one {
+            top: 25px;
+            right: -5px;
+        }
+        .card-two {
+            bottom: 30px;
+            left: -5px;
+        }
+        /* =====================================================
+           COMMON SECTION
+        ===================================================== */
+        section {
+            padding: 110px 0;
+        }
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+        .section-heading span {
+            color: #8b5cf6;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+        .section-heading h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(35px,5vw,52px);
+            margin-top: 10px;
+            letter-spacing: -2px;
+        }
+        .section-heading p {
+            max-width: 600px;
+            margin: 15px auto 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        /* =====================================================
+           GLASS CARDS
+        ===================================================== */
+        .glass-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,.15);
+            transition: .4s;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139,92,246,.35);
+            box-shadow: 0 25px 70px rgba(0,0,0,.25);
+        }
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 25px;
+        }
+        .about-intro {
+            padding: 35px;
+        }
+        .about-icon {
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,.2),
+                rgba(6,182,212,.15)
+            );
+            color: #a78bfa;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+        .about-intro h3 {
+            font-family: "Space Grotesk";
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        .about-intro p,
+        .about-content p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        .about-content {
+            padding: 35px;
+        }
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .info {
+            padding: 15px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+        }
+        .info small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        .info strong {
+            font-size: 14px;
+        }
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .skill-card {
+            padding: 28px;
+        }
+        .skill-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            background: rgba(124,58,237,.12);
+            color: #a78bfa;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+        .skill-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .skill-level {
+            margin-top: 20px;
+        }
+        .level-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .progress {
+            height: 5px;
+            background: rgba(255,255,255,.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress span {
+            display: block;
+            height: 100%;
+            border-radius: 10px;
+            background: var(--gradient);
+        }
+        .html {
+            width: 80%;
+        }
+        .python {
+            width: 65%;
+        }
+        .web {
+            width: 60%;
+        }
+        /* =====================================================
+           EDUCATION TIMELINE
+        ===================================================== */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(
+                #8b5cf6,
+                #06b6d4,
+                transparent
+            );
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 35px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 13px;
+            top: 5px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 5px solid var(--bg);
+            box-shadow: 0 0 20px rgba(124,58,237,.6);
+        }
+        .timeline-content {
+            padding: 28px;
+        }
+        .timeline-content small {
+            color: #22d3ee;
+            font-weight: 600;
+        }
+        .timeline-content h3 {
+            font-family: "Space Grotesk";
+            font-size: 23px;
+            margin: 8px 0;
+        }
+        .timeline-content h4 {
+            color: #cbd5e1;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .timeline-content p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 22px;
+        }
+        .project-card {
+            overflow: hidden;
+        }
+        .project-preview {
+            height: 210px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(139,92,246,.3),
+                    transparent 40%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(6,182,212,.2),
+                    transparent 40%
+                );
+            border-bottom: 1px solid var(--border);
+        }
+        .project-preview i {
+            font-size: 70px;
+            color: #a78bfa;
+            filter: drop-shadow(0 10px 25px rgba(124,58,237,.5));
+        }
+        .project-info {
+            padding: 27px;
+        }
+        .project-info h3 {
+            font-family: "Space Grotesk";
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+        .project-info p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(139,92,246,.1);
+            color: #c4b5fd;
+            font-size: 11px;
+        }
+        /* =====================================================
+           ACHIEVEMENT
+        ===================================================== */
+        .achievement {
+            max-width: 750px;
+            margin: auto;
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .certificate-icon {
+            min-width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: rgba(6,182,212,.1);
+            color: #22d3ee;
+            font-size: 30px;
+        }
+        .achievement h3 {
+            font-family: "Space Grotesk";
+            margin-bottom: 8px;
+        }
+        .achievement p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 25px;
+        }
+        .contact-info {
+            padding: 35px;
+        }
+        .contact-info h3 {
+            font-family: "Space Grotesk";
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .contact-info > p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .contact-detail i {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(139,92,246,.1);
+            color: #a78bfa;
+        }
+        .contact-detail small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 3px;
+        }
+        .contact-detail span {
+            font-size: 14px;
+        }
+        .contact-form {
+            padding: 35px;
+        }
+        .input-group {
+            margin-bottom: 16px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255,255,255,.035);
+            color: white;
+            outline: none;
+            font-family: inherit;
+            resize: vertical;
+            transition: .3s;
+        }
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139,92,246,.1);
+        }
+        .contact-form button {
+            width: 100%;
+            border: 0;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: rgba(0,0,0,.2);
+        }
+        footer .logo {
+            margin-bottom: 8px;
+        }
+        footer p {
+            color: #64748b;
+            font-size: 13px;
+        }
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .socials a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #94a3b8;
+            transition: .3s;
+        }
+        .socials a:hover {
+            color: white;
+            background: #7c3aed;
+            transform: translateY(-4px);
+        }
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: 1s ease;
+        }
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media(max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 150px;
+            }
+            .hero-description {
+                margin: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .profile-orbit {
+                width: 280px;
+                height: 280px;
+            }
+            .profile {
+                width: 180px;
+                height: 180px;
+            }
+            .profile i {
+                font-size: 70px;
+            }
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media(max-width: 650px) {
+            .navbar {
+                margin: 10px auto;
+            }
+            .nav-links {
+                position: absolute;
+                top: 68px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                display: none;
+                flex-direction: column;
+                gap: 18px;
+                text-align: center;
+                background: rgba(5,8,22,.95);
+                border: 1px solid var(--border);
+                border-radius: 15px;
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+            .hero h2 {
+                font-size: 18px;
+            }
+            .profile-orbit {
+                width: 240px;
+                height: 240px;
+            }
+            .profile {
+                width: 155px;
+                height: 155px;
+            }
+            .profile i {
+                font-size: 60px;
+            }
+            .floating-card {
+                display: none;
+            }
+            section {
+                padding: 80px 0;
+            }
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .achievement {
+                flex-direction: column;
+                text-align: center;
+            }
+            .timeline-item {
+                padding-left: 55px;
+            }
+            .timeline::before {
+                left: 18px;
+            }
+            .timeline-dot {
+                left: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<header>
+    <nav class="navbar">
+        <a href="#home" class="logo">
+            Naitik<span>.</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li>
+                <a href="#home">Home</a>
+            </li>
+            <li>
+                <a href="#about">About</a>
+            </li>
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+            <li>
+                <a href="#education">Education</a>
+            </li>
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
+        <button class="menu-btn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+</header>
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero" id="home">
+    <div class="hero-content reveal">
+        <div class="badge">
+            <span class="status-dot"></span>
+            Currently learning Web Development
+        </div>
+        <h1>
+            Hi, I'm
+            <br>
+            <span class="gradient-text">
+                Naitik Nayak
+            </span>
+        </h1>
+        <h2>
+            Student &amp; Future Web Developer
+        </h2>
+        <p class="hero-description">
+            I'm a Class 11 Agriculture student passionate about
+            technology, programming and creating modern websites.
+            Currently learning Web Development with HTML and Python.
+        </p>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+                Explore My Work
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-glass">
+                Let's Connect
+            </a>
+        </div>
+    </div>
+    <div class="hero-visual reveal">
+        <div class="profile-orbit">
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="floating-card card-one">
+                <i class="fa-brands fa-html5"></i>
+                HTML
+            </div>
+            <div class="floating-card card-two">
+                <i class="fa-brands fa-python"></i>
+                Python
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+<section id="about">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>About Me</span>
+            <h2>
+                A Student With
+                <br>
+                <span class="gradient-text">
+                    Big Ambitions
+                </span>
+            </h2>
+            <p>
+                Learning today, building tomorrow.
+            </p>
+        </div>
+        <div class="about-grid">
+            <div class="glass-card about-intro reveal">
+                <div class="about-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <h3>
+                    Who I Am
+                </h3>
+                <p>
+                    I'm Naitik Nayak, a student from Shahdol,
+                    Madhya Pradesh, currently studying Class 11th
+                    Agriculture at Sandipani School, Chhatwai.
+                </p>
+            </div>
+            <div class="glass-card about-content reveal">
+                <p>
+                    I have a strong interest in technology and
+                    web development. I enjoy understanding how
+                    websites work and turning ideas into digital
+                    experiences.
+                </p>
+                <p>
+                    I currently have knowledge of
+                    <strong>HTML and Python</strong> and I'm
+                    continuously learning new web development
+                    concepts.
+                </p>
+                <p>
+                    My long-term goal is to become a professional
+                    <strong>Web Developer</strong> and create
+                    useful and creative websites.
+                </p>
+                <div class="info-grid">
+                    <div class="info">
+                        <small>Location</small>
+                        <strong>Shahdol, M.P.</strong>
+                    </div>
+                    <div class="info">
+                        <small>Class</small>
+                        <strong>11th</strong>
+                    </div>
+                    <div class="info">
+                        <small>Stream</small>
+                        <strong>Agriculture</strong>
+                    </div>
+                    <div class="info">
+                        <small>Goal</small>
+                        <strong>Web Developer</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     SKILLS
+========================================================= -->
+<section id="skills">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>My Skills</span>
+            <h2>
+                Technologies I'm
+                <span class="gradient-text">
+                    Learning
+                </span>
+            </h2>
+            <p>
+                I'm continuously improving my technical skills
+                and exploring modern web technologies.
+            </p>
+        </div>
+        <div class="skills-grid">
+            <!-- HTML -->
+            <div class="glass-card skill-card reveal">
+                <div class="skill-icon">
+                    <i class="fa-brands fa-html5"></i>
+                </div>
+                <h3>HTML</h3>
+                <p>
+                    Building structured and semantic
+                    web pages using HTML.
+                </p>
+                <div class="skill-level">
+                    <div class="level-text">
+                        <span>Learning Level</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <span class="html"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Python -->
+            <div class="glass-card skill-card reveal">
+                <div class="skill-icon">
+                    <i class="fa-brands fa-python"></i>
+                </div>
+                <h3>Python</h3>
+                <p>
+                    Learning programming fundamentals
+                    and problem solving with Python.
+                </p>
+                <div class="skill-level">
+                    <div class="level-text">
+                        <span>Learning Level</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress">
+                        <span class="python"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Web Development -->
+            <div class="glass-card skill-card reveal">
+                <div class="skill-icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>
+                    Learning how to create responsive
+                    and interactive websites.
+                </p>
+                <div class="skill-level">
+                    <div class="level-text">
+                        <span>Learning Level</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress">
+                        <span class="web"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     EDUCATION
+========================================================= -->
+<section id="education">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>My Journey</span>
+            <h2>
+                Education
+                <span class="gradient-text">
+                    Timeline
+                </span>
+            </h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card timeline-content">
+                    <small>Current • Class 11th</small>
+                    <h3>
+                        Higher Secondary Education
+                    </h3>
+                    <h4>
+                        Sandipani School, Chhatwai
+                    </h4>
+                    <p>
+                        Currently studying Class 11th with
+                        Agriculture as my stream.
+                        My favorite subject is Social Science.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card timeline-content">
+                    <small>Achievement</small>
+                    <h3>
+                        On-Job Training
+                    </h3>
+                    <h4>
+                        Training Certificate
+                    </h4>
+                    <p>
+                        Completed On-Job Training and received
+                        a certificate, gaining practical
+                        learning experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+<section id="projects">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>My Work</span>
+            <h2>
+                Featured
+                <span class="gradient-text">
+                    Projects
+                </span>
+            </h2>
+            <p>
+                A collection of my current and upcoming
+                web development projects.
+            </p>
+        </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="glass-card project-card reveal">
+                <div class="project-preview">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="project-info">
+                    <h3>
+                        Personal Portfolio
+                    </h3>
+                    <p>
+                        A modern personal portfolio website
+                        designed to showcase my skills,
+                        education and achievements.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">
+                            HTML
+                        </span>
+                        <span class="tag">
+                            CSS
+                        </span>
+                        <span class="tag">
+                            JavaScript
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="glass-card project-card reveal">
+                <div class="project-preview">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div class="project-info">
+                    <h3>
+                        Future Web Project
+                    </h3>
+                    <p>
+                        More creative and useful websites
+                        are currently being planned as I
+                        continue learning web development.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">
+                            Web Development
+                        </span>
+                        <span class="tag">
+                            Python
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     ACHIEVEMENT
+========================================================= -->
+<section>
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>Achievement</span>
+            <h2>
+                Training &amp;
+                <span class="gradient-text">
+                    Certificate
+                </span>
+            </h2>
+        </div>
+        <div class="glass-card achievement reveal">
+            <div class="certificate-icon">
+                <i class="fa-solid fa-certificate"></i>
+            </div>
+            <div>
+                <h3>
+                    On-Job Training Certificate
+                </h3>
+                <p>
+                    Completed On-Job Training and received
+                    a certificate for practical learning
+                    experience.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+<section id="contact">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span>Contact</span>
+            <h2>
+                Let's
+                <span class="gradient-text">
+                    Connect
+                </span>
+            </h2>
+            <p>
+                Have an idea or want to get in touch?
+                Send me a message.
+            </p>
+        </div>
+        <div class="contact-wrapper">
+            <div class="glass-card contact-info reveal">
+                <h3>
+                    Get In Touch
+                </h3>
+                <p>
+                    I'm always interested in learning,
+                    building new projects and connecting
+                    with people interested in technology.
+                </p>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <small>Email</small>
+                        <span>
+                            naitik.nayak999@gmail.com
+                        </span>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <small>Phone</small>
+                        <span>
+                            9329866334
+                        </span>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <small>Location</small>
+                        <span>
+                            Shahdol, Madhya Pradesh
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <form class="glass-card contact-form reveal"
+                  id="contactForm">
+                <div class="input-group">
+                    <label>
+                        Your Name
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required>
+                </div>
+                <div class="input-group">
+                    <label>
+                        Your Email
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+                <div class="input-group">
+                    <label>
+                        Message
+                    </label>
+                    <textarea
+                        id="message"
+                        rows="6"
+                        placeholder="Write your message..."
+                        required></textarea>
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Send Message
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer>
+    <div class="logo">
+        Naitik<span>.</span>
+    </div>
+    <p>
+        Student • Future Web Developer
+    </p>
+    <div class="socials">
+        <a href="#" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="mailto:naitik.nayak999@gmail.com"
+           aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    </div>
+    <p>
+        © 2026 Naitik Nayak. All Rights Reserved.
+    </p>
+</footer>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+    /* =========================
+       MOBILE MENU
+    ========================= */
+    const menuBtn =
+        document.getElementById("menuBtn");
+    const navLinks =
+        document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        const icon =
+            menuBtn.querySelector("i");
+        if (navLinks.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+    });
+    /* Close mobile menu */
+    document.querySelectorAll(".nav-links a")
+        .forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                const icon =
+                    menuBtn.querySelector("i");
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            });
+        });
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+    const revealElements =
+        document.querySelectorAll(".reveal");
+    const revealObserver =
+        new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            },
+            {
+                threshold: 0.12
+            }
+        );
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
+    /* =========================
+       CONTACT FORM
+    ========================= */
+    document
+        .getElementById("contactForm")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name =
+                document.getElementById("name").value;
+            const email =
+                document.getElementById("email").value;
+            const message =
+                document.getElementById("message").value;
+            const subject =
+                encodeURIComponent(
+                    "Portfolio Contact - " + name
+                );
+            const body =
+                encodeURIComponent(
+                    "Name: " + name +
+                    "\nEmail: " + email +
+                    "\n\nMessage:\n" + message
+                );
+            window.location.href =
+                "mailto:naitik.nayak999@gmail.com" +
+                "?subject=" + subject +
+                "&body=" + body;
+        });
+</script>
+</body>
+</html>
